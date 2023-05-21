@@ -23,7 +23,7 @@ echo "KnockoutCity Server Backend Redis Port: $KOC_BACKEND_REDIS_DB_PORT"
 echo "--------------------------------------------------------"
 echo ""
 
-cd KnockoutCityServer || exit 1
+cd /data/KnockoutCityServer || exit 1
 wine64 KnockoutCityServer.exe \
   -backend_port="${KOC_BACKEND_PORT:-23600}" \
   -server_min_port="${KOC_SERVER_MIN_PORT:-23600}" \
