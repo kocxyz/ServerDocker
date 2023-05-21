@@ -1,0 +1,39 @@
+services:
+  postgres:
+    image: postgres:15.3
+    container_name: koc-db
+
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: koc
+
+  redis:
+    image: redis:7.0.11
+    container_name: koc-redis
+
+  server:
+    image: ghcr.io/tandashi/knockoutcity-server-docker
+    container_name: koc-server
+
+    environment:
+      KOC_SERVER_DONWLOAD_URL: https://chonky-delivery-network.akamaized.net/KnockoutCity-Server-10.0-269701.zip
+
+      KOC_BACKEND_MAX_PLAYER_CONNECTIONS: 10
+      KOC_SECRET:
+
+      KOC_BACKEND_PORT: 23600
+      KOC_SERVER_MIN_PORT: 23600
+      KOC_SERVER_MAX_PORT: 23699
+
+      KOC_BACKEND_DB: postgres://postgres:postgres@postgres:5432/koc
+      KOC_BACKEND_REDIS_DB_HOST: redis
+      KOC_BACKEND_REDIS_DB_PORT: 6379
+
+    ports:
+      - "23600-23699:23600-23699"
+      - "23600-23699:23600-23699/udp"
+
+    depends_on:
+      - redis
+      - postgres
