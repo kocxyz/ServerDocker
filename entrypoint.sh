@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 if [[ -z "$KOC_SERVER_DONWLOAD_URL" ]]; then
   echo "No Server Download Url provided. Skipping download..."

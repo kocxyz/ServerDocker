@@ -1,8 +1,10 @@
-FROM --platform=linux/amd64 scottyhardy/docker-wine
+FROM --platform=linux/amd64 alpine:3.18
 
 LABEL org.opencontainers.image.source = "https://github.com/Tandashi/knockoutcity-server-docker"
 LABEL org.opencontainers.image.description = "A Docker Container Image that runs a Knockout City Private Server"
 
-COPY entrypoint.sh entrypoint.sh
+COPY --chmod=0755 entrypoint.sh entrypoint.sh
 
-ENTRYPOINT ["bash", "entrypoint.sh"]
+RUN apk add wine
+
+ENTRYPOINT ["sh", "entrypoint.sh"]
