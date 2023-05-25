@@ -1,9 +1,16 @@
 #!/bin/sh
 
-if [[ -z "$KOC_SERVER_DONWLOAD_URL" ]]; then
-  echo "No Server Download Url provided. Skipping download..."
+KOC_SERVER_FILE_PATH=/data/KnockoutCityServer
+
+if [[ -d "$KOC_SERVER_FILE_PATH" && "${KOC_FORCE_SERVER_DOWNLOAD:-false}" == false ]]; then
+  echo "Server files already downloaded. Skipping download..."
 else
-  mkdir /data
+  if [[ -z "$KOC_SERVER_DONWLOAD_URL" ]]; then
+    echo "No Server Download Url provided. Can't download..."
+    exit 1
+  fi
+
+  mkdir -p /data
   cd /data || exit 1
 
   wget "$KOC_SERVER_DONWLOAD_URL" -O KnockoutCity-Server.zip
@@ -23,7 +30,7 @@ echo "KnockoutCity Server Backend Redis Port: $KOC_BACKEND_REDIS_DB_PORT"
 echo "--------------------------------------------------------"
 echo ""
 
-cd /data/KnockoutCityServer || exit 1
+cd $KOC_SERVER_FILE_PATH || exit 1
 wine64 KnockoutCityServer.exe \
   -backend_port="${KOC_BACKEND_PORT:-23600}" \
   -server_min_port="${KOC_SERVER_MIN_PORT:-23600}" \

@@ -37,6 +37,7 @@
 Copy the [`compose.yaml`](https://github.com/Tandashi/knockoutcity-server-docker/blob/main/compose.yaml) and tweak to your liking.
 
 Then you can start the server as follows:
+
 ```bash
 docker compose up
 ```
@@ -52,6 +53,7 @@ For detailed information on the different parameters please refer to the Knockou
 
 | **Name**                             | **Required** | **Description**                                                                                                                                                                                                                                                |
 | ------------------------------------ | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `KOC_FORCE_SERVER_DONWLOAD`          | No           | Forces to redownload the Server files. <br /> `default`: false                                                                                                                                                                                                 |
 | `KOC_SERVER_DONWLOAD_URL`            | No           | The URL where the Knockout City Server files are located. If not specified will not redownload files. **Must be specified once for initialisation**. <br /><br /> `example`: https://chonky-delivery-network.akamaized.net/KnockoutCity-Server-10.0-269701.zip |
 | `KOC_BACKEND_MAX_PLAYER_CONNECTIONS` | No           | The maximum number of players that can be connected at the same time. <br /> `default`: 10                                                                                                                                                                     |
 | `KOC_BACKEND_PORT`                   | No           | TCP port on which the online backend services listen. <br /> `default`: 23600                                                                                                                                                                                  |

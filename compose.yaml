@@ -27,13 +27,14 @@ services:
       - redis-data:/data 
  
   server:
-    image: ghcr.io/tandashi/knockoutcity-server-docker
+    build: .
     container_name: koc-server
 
     volumes: 
       - server-data:/data 
  
     environment:
+      KOC_FORCE_SERVER_DOWNLOAD: true
       KOC_SERVER_DONWLOAD_URL: https://chonky-delivery-network.akamaized.net/KnockoutCity-Server-10.0-269701.zip
 
       KOC_BACKEND_MAX_PLAYER_CONNECTIONS: 10
