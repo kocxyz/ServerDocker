@@ -20,6 +20,9 @@
   <summary>Table of Contents</summary>
   <ol>
     <li>
+      <a href="#prequisite">Prequisite</a>
+    </li>
+    <li>
       <a href="#usage">Usage</a>
       <ul>
         <li><a href="#environment-variables">Environment Variables</a></li>
@@ -31,6 +34,9 @@
 </details>
 
 <!-- USAGE  -->
+
+## Prequisite
+- [docker](https://www.docker.com) (any version that supports [compose v2](https://docs.docker.com/compose/migrate/))
 
 ## Usage
 
