@@ -9,7 +9,7 @@ else
     echo "No Server Download Url provided. Can't download..."
     exit 1
   fi
-  if [[  "${KOC_SERVER_DOWNLOAD_LATEST_VERSION:-false}" == false ]]; then
+  if [[  "${KOC_SERVER_DOWNLOAD_LATEST_VERSION}" == false ]]; then
     echo 'Server is searching for the latest version...'
     LATEST_LINK=$(echo -n 'https://www.knockoutcity.com/private-server-edition' | grep -oP "https://chonky-delivery-network\.akamaized\.net/KnockoutCity-Server(.*).zip")
     if [[ -z "$LATEST_LINK" ]]; then
