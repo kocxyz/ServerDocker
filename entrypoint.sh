@@ -5,15 +5,25 @@ KOC_SERVER_FILE_PATH=/data/KnockoutCityServer
 if [[ -d "$KOC_SERVER_FILE_PATH" && "${KOC_FORCE_SERVER_DOWNLOAD:-false}" == false ]]; then
   echo "Server files already downloaded. Skipping download..."
 else
-  if [[ -z "$KOC_SERVER_DONWLOAD_URL" ]]; then
+  if [[ -z "$KOC_SERVER_DOWNLOAD_URL" ]]; then
     echo "No Server Download Url provided. Can't download..."
     exit 1
+  fi
+  if [[  "${KOC_SERVER_DOWNLOAD_LATEST_VERSION}" == false ]]; then
+    echo 'Server is searching for the latest version...'
+    LATEST_LINK=$(echo -n 'https://www.knockoutcity.com/private-server-edition' | grep -oP "https://chonky-delivery-network\.akamaized\.net/KnockoutCity-Server(.*).zip")
+    if [[ -z "$LATEST_LINK" ]]; then
+      echo "Coudln't find the latest version of Knockout City Server Edition. Going to download the URL in the yaml file"
+    else
+      echo "Found the latest version !"
+      KOC_SERVER_DOWNLOAD_URL=$LATEST_LINK
+    fi
   fi
 
   mkdir -p /data
   cd /data || exit 1
 
-  wget "$KOC_SERVER_DONWLOAD_URL" -O KnockoutCity-Server.zip
+  wget "$KOC_SERVER_DOWNLOAD_URL" -O KnockoutCity-Server.zip
   unzip KnockoutCity-Server.zip
   rm KnockoutCity-Server.zip
 fi
