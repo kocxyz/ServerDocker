@@ -27,7 +27,7 @@ services:
       - redis-data:/data 
  
   server:
-    image: ghcr.io/tandashi/knockoutcity-server-docker
+    image: ghcr.io/kocxyz/serverdocker
     container_name: koc-server
 
     volumes: 
