@@ -30,7 +30,25 @@ echo "KnockoutCity Server Backend Redis Port: $KOC_BACKEND_REDIS_DB_PORT"
 echo "--------------------------------------------------------"
 echo ""
 
+mkdir -p \
+  /mod-loader/mods \
+  /mod-loader/configs
+
+echo "Installing/Updating Mod Loader..."
+npm i -g knockoutcity-mod-loader
+
+echo "Running Mod Loader..."
+export NODE_OPTIONS="--no-node-snapshot"
+export DATABASE_URL="${KOC_BACKEND_DB}"
+npx knockoutcity-mod-loader load \
+  --mod-dir /mod-loader/mods \
+  --mod-config-dir /mod-loader/configs \
+  --permission-file /mod-loader/permissions.yaml \
+  --out-dir $KOC_SERVER_FILE_PATH || exit 1
+
 cd $KOC_SERVER_FILE_PATH || exit 1
+
+echo "Starting Server..."
 wine64 KnockoutCityServer.exe \
   -backend_port="${KOC_BACKEND_PORT:-23600}" \
   -server_min_port="${KOC_SERVER_MIN_PORT:-23600}" \
