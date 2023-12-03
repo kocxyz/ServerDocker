@@ -1,3 +1,6 @@
+version: '3.8'
+x-project-name: koc
+
 volumes: 
   postgres-data: 
   redis-data: 
@@ -34,8 +37,9 @@ services:
       - server-data:/data 
  
     environment:
-      KOC_FORCE_SERVER_DOWNLOAD: true
-      KOC_SERVER_DONWLOAD_URL: https://chonky-delivery-network.akamaized.net/KnockoutCity-Server-10.0-269701.zip
+      KOC_FORCE_SERVER_DOWNLOAD: "true"
+      KOC_SERVER_DOWNLOAD_URL: https://chonky-delivery-network.akamaized.net/KnockoutCity-Server-10.0-269701.zip
+      KOC_SERVER_DOWNLOAD_LATEST_VERSION: "true" # This option will bypass the KOC_SERVER_DOWNLOAD_URL
 
       KOC_BACKEND_MAX_PLAYER_CONNECTIONS: 10
       KOC_SECRET:
